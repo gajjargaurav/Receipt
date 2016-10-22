@@ -88,7 +88,7 @@ module.exports = (() => {
 			}
 		},
 
-		create(chunks, { width = 48, currency = '$' }) {
+		create(chunks, { width = 48, currency = '$' } = {}) {
 
 			return chunks.map((chunk) => {
 				if (chunk.hasOwnProperty('type')) {
