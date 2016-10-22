@@ -24,6 +24,15 @@ const output = receipt.create([
 		{ item: 'Product 7', qty: 7, cost: 1275 }
 	] },
 	{ type: 'empty' },
+	{ type: 'table',
+		lines: [
+			{ item: 'Product 1', qty: 10, cost: 1000 }
+		],
+		options: {
+			updateTotal: false
+		}
+	},
+	{ type: 'empty' },
 	{ type: 'center', value: 'Some extra information to' },
 	{ type: 'center', value: 'add to the footer of this' },
 	{ type: 'center', value: 'docket.' },

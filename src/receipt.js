@@ -50,10 +50,17 @@ module.exports = (() => {
 				for (let line of chunk.lines) {
 					let total = line.qty * line.cost;
 
-					if (line.hasOwnProperty('discount')) {
-						if (line.discount.type === 'percentage') total *= (1 - line.discount.value);
-						else if (line.discount.type === 'message') total;
-						else total -= line.discount.value;
+					if(chunk.options &&
+						chunk.options.hasOwnProperty('updateTotal') &&
+						!chunk.options.updateTotal) {
+							total = line.cost
+					}
+					else {
+						if (line.hasOwnProperty('discount')) {
+							if (line.discount.type === 'percentage') total *= (1 - line.discount.value);
+							else if (line.discount.type === 'message') total;
+							else total -= line.discount.value;
+						}
 					}
 
 					lines.push([
@@ -81,7 +88,7 @@ module.exports = (() => {
 			}
 		},
 
-		create(chunks, { width = 48, currency = '$' } = {}) {
+		create(chunks, { width = 48, currency = '$' }) {
 
 			return chunks.map((chunk) => {
 				if (chunk.hasOwnProperty('type')) {
